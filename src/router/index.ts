@@ -22,7 +22,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/statistics',
     component: Statistics
-  }
+  },
 ];
 
 const router = new VueRouter({
