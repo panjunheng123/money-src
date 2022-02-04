@@ -15,29 +15,21 @@
 </template>
 
 <script lang="ts">
-
-import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
-import tagListModel from '@/models/tagListModel';
 import Button from '@/components/Button.vue';
+import TagHelper from '@/mixins/TagHelper';
+import {mixins} from 'vue-class-component';
 
-tagListModel.fetch();
 @Component({
-  components: {Button}
+  components: {Button},
 })
-export default class Labels extends Vue {
-  tags = tagListModel.data;
+export default class Labels extends mixins(TagHelper) {
+  get tags() {
+    return this.$store.state.tagList;
+  }
 
-  createTag() {
-    const name = window.prompt('请输出标签名');
-    if (name) {
-      const message = tagListModel.create(name);
-      if (message === 'duplicated') {
-        window.alert('标签名重复了');
-      } else if (message === 'success') {
-        window.alert('添加成功');
-      }
-    }
+  beforeCreate() {
+    this.$store.commit('fetchTags');
   }
 }
 </script>
@@ -63,6 +55,7 @@ export default class Labels extends Vue {
     }
   }
 }
+
 .createTag {
   background: #767676;
   color: white;

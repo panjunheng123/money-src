@@ -17,7 +17,6 @@ import {Component, Prop, Watch} from 'vue-property-decorator';
 @Component
 export default class FormItem extends Vue {
   @Prop({default: ''}) readonly value!: string;
-
   @Prop({required: true}) fieldName!: string;
   @Prop() placeholder?: string;
 
