@@ -78,7 +78,8 @@ const store = new Vuex.Store({
         store.commit('createTag', '行');
       }
     },
-    createTag(state, name: string) {
+    createTag(state, payload: { name: string, type: string, url: string }) {
+      const {name, type, url} = payload;
       state.createTagError = null;
       const names = state.tagList.map(item => item.name);
       if (names.indexOf(name) >= 0) {
@@ -86,7 +87,7 @@ const store = new Vuex.Store({
         return;
       }
       const id = createId().toString();
-      state.tagList.push({id, name: name});
+      state.tagList.push({id: id, name: name, type: type, url: url});
       store.commit('saveTags');
     },
     saveTags(state) {

@@ -9,6 +9,8 @@ type RecordItem = {
 type Tag = {
   id: string;
   name: string;
+  type: string;
+  url: string;
 }
 type TagListModel = {
   data: Tag[]
