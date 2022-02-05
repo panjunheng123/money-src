@@ -1,14 +1,16 @@
 <template>
   <Layout class-prefix="layout">
-    <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
-    <Tabs :data-source="recordTypeList" :value.sync="record.type"></Tabs>
-    <div class="notes">
-      <FormItem field-name="备注"
-                placeholder="在这里输入备注"
-                :value.sync="record.notes"
-      />
+    <div>
+      <div class="notes">
+        <FormItem field-name="备注"
+                  placeholder="点击写备注..."
+                  :value.sync="record.notes"
+        />
+      </div>
+      <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
     </div>
     <Tags @update:value="record.tags=$event"/>
+    <Tabs :data-source="recordTypeList" :value.sync="record.type"></Tabs>
   </Layout>
 </template>
 
@@ -20,7 +22,6 @@ import Tags from '@/components/Money/Tags.vue';
 import {Component} from 'vue-property-decorator';
 import recordTypeList from '@/constants/recordTypeList';
 import Tabs from '@/components/Tabs.vue';
-
 
 @Component({
   components: {Tabs, FormItem, Tags, NumberPad},
@@ -62,12 +63,14 @@ export default class Money extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import "./src/assets/style/helper";
 ::v-deep .layout-content {
   display: flex;
   flex-direction: column-reverse;
 }
 
 .notes {
-  padding: 12px 0;
+  position: absolute;
 }
+
 </style>

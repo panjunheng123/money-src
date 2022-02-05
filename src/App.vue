@@ -14,5 +14,7 @@ body {
   line-height: 1.5;
   font-family: $font-hei;
   font-size: 16px;
+  background-image: url("./assets/cat2.jpg");
+  background-size: contain;
 }
 </style>

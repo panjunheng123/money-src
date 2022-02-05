@@ -1,14 +1,14 @@
 <template>
   <div class="tags">
-    <div class="new">
-      <button @click="createTag">新增标签</button>
-    </div>
     <ul class="current">
       <li v-for="tag in tagList" :key="tag.id"
           :class="{selected:selectedTags.indexOf(tag)>=0}"
           @click="toggle(tag)">{{ tag.name }}
       </li>
     </ul>
+    <!--    <div class="new">-->
+    <!--      <button @click="createTag">新增标签</button>-->
+    <!--    </div>-->
   </div>
 
 </template>
@@ -35,6 +35,7 @@ export default class Tags extends mixins(TagHelper) {
     if (index >= 0) {
       this.selectedTags.splice(index, 1);
     } else {
+      this.selectedTags = [];
       this.selectedTags.push(tag);
     }
     this.$emit('update:value', this.selectedTags);
@@ -48,8 +49,8 @@ export default class Tags extends mixins(TagHelper) {
   font-size: 14px;
   padding: 16px;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column-reverse;
+  //display: flex;
+  border: 1px solid red;
 
   > .current {
     display: flex;
