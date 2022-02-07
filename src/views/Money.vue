@@ -9,7 +9,7 @@
       </div>
       <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
     </div>
-    <Tags @update:value="record.tags=$event"/>
+    <Tags :type="record.type" @update:value="record.tags=$event"/>
     <Tabs :data-source="recordTypeList" :value.sync="record.type"></Tabs>
   </Layout>
 </template>

@@ -10,7 +10,7 @@ type Tag = {
   id: string;
   name: string;
   type: string;
-  url: string;
+  iconName: string;
 }
 type TagListModel = {
   data: Tag[]
