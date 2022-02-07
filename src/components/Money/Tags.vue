@@ -5,6 +5,7 @@
           v-show="tag.type===type"
           :class="{selected:selectedTags.indexOf(tag)>=0}"
           @click="toggle(tag)">{{ tag.name }}
+          <Icon :name="tag.iconName"></Icon>
       </li>
     </ul>
     <!--    <div class="new">-->
@@ -54,7 +55,6 @@ export default class Tags extends mixins(TagHelper) {
   padding: 16px;
   flex-grow: 1;
   //display: flex;
-  border: 1px solid red;
 
   > .current {
     display: flex;
