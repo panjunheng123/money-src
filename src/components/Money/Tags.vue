@@ -4,9 +4,10 @@
       <li v-for="tag in tagList" :key="tag.id"
           v-show="tag.type===type"
           :class="{selected:selectedTags.indexOf(tag)>=0}"
-          @click="toggle(tag)">
+          @click="toggle(tag)"
+      >
         <Icon :name="tag.iconName" class="myIcon"></Icon>
-        <span class="myFont">{{ tag.name }}</span>
+        <div class="myFont">{{ tag.name }}</div>
       </li>
       <li>
         <router-link to="/labels" class="item" active-class="selected">
@@ -15,9 +16,6 @@
         </router-link>
       </li>
     </ul>
-    <!--        <div class="new">-->
-    <!--          <button @click="createTag">新增标签</button>-->
-    <!--        </div>-->
   </div>
 
 </template>
@@ -95,18 +93,6 @@ export default class Tags extends mixins(TagHelper) {
       .myFont {
         margin-left: 8px;
       }
-    }
-  }
-
-  > .new {
-    padding-top: 16px;
-
-    button {
-      background: transparent;
-      border: none;
-      color: #999;
-      border-bottom: 1px solid;
-      padding: 0 4px;
     }
   }
 }
