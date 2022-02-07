@@ -1,9 +1,12 @@
 <template>
   <Layout>
+    <Tabs :data-source="recordTypeList" :value.sync="type"></Tabs>
     <div class="tags">
       <router-link class="tag"
                    v-for="tag in tags" :key="tag.id"
+                   v-show="tag.type===type"
                    :to="`/labels/edit/${tag.id}`">
+        <Icon :name="tag.iconName"></Icon>
         <span>{{ tag.name }}</span>
         <Icon name="right"/>
       </router-link>
@@ -19,11 +22,17 @@ import {Component} from 'vue-property-decorator';
 import Button from '@/components/Button.vue';
 import TagHelper from '@/mixins/TagHelper';
 import {mixins} from 'vue-class-component';
+import Tabs from '@/components/Tabs.vue';
+import recordTypeList from '@/constants/recordTypeList';
 
 @Component({
-  components: {Button},
+  components: {Tabs, Button},
 })
 export default class Labels extends mixins(TagHelper) {
+  recordTypeList = recordTypeList;
+
+  type = '-';
+
   get tags() {
     return this.$store.state.tagList;
   }
