@@ -42,7 +42,7 @@
 }
 
 .record {
-  background: white;
+  background: rgb(236, 236, 236);
   @extend %item;
 }
 
@@ -78,12 +78,10 @@ export default class Statistics extends Vue {
       return '今天';
     } else if (day.isSame(now.subtract(1, 'day'), 'day')) {
       return '昨天';
-    } else if (day.isSame(now.subtract(2, 'day'), 'day')) {
-      return '前天';
     } else if (day.isSame((now), 'year')) {
-      return day.format('MM月DD日');
+      return day.format('M月D日');
     } else {
-      return day.format('YYYY年MM月DD日');
+      return day.format('YYYY年M月D日');
     }
   }
 

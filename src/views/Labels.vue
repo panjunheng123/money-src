@@ -13,7 +13,7 @@
     </div>
     <router-link :to="`/labels/create/${type}`">
       <div class="createTag-wrapper">
-        <Button class="createTag">新建标签</Button>
+        <Button class="createTag">新增标签</Button>
       </div>
     </router-link>
   </Layout>

@@ -2,11 +2,11 @@
   <Layout>
     <div class="navBar">
       <Icon class="leftIcon" name="left" @click="goBack"></Icon>
-      <span class="title">新增自定义分类</span>
+      <span class="title">新增自定义标签</span>
       <span class="rightIcon"></span>
     </div>
     <div class="form-wrapper">
-      <FormItem :value.sync="name" field-name="分类名" placeholder="请输入分类名"></FormItem>
+      <FormItem :value.sync="name" field-name="标签名" placeholder="请输入标签名"></FormItem>
     </div>
     <div class="chooseIcon">
       <div class="text">选择一个图标</div>
@@ -36,20 +36,20 @@ import Button from '@/components/Button.vue';
 })
 export default class EditLabel extends Vue {
   name = '';
-  iconNames = ['money', '兼职', '工资', '娱乐', '汽车', '设置', '购物', '餐饮', '零食', '理财'];
+  iconNames = ['笑脸', '手柄', '乒乓球', '音乐', '盾牌保卫', '视频', '木马', '水瓶', '特色', '品牌'];
   currentIconName = '';
 
   save() {
     if (this.name === '') {
-      return window.alert('请输入分类名！');
+      return window.alert('请输入标签名');
     }
     if (this.currentIconName === '') {
-      return window.alert('请选择一个图标！');
+      return window.alert('请选择一个图标');
     }
     this.$store.commit('createTag', {name: this.name, type: this.$route.params.type, iconName: this.currentIconName});
     if (this.$store.state.createTagError) {
       if (this.$store.state.createTagError.message === 'tag name duplicated') {
-        return window.alert('分类名重复了！');
+        return window.alert('标签名重复了');
       }
     }
     return window.alert('添加成功');
