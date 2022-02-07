@@ -72,10 +72,19 @@ const store = new Vuex.Store({
     fetchTags(state) {
       state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
       if (!state.tagList || state.tagList.length === 0) {
-        store.commit('createTag', {name: '餐饮', type: '-', iconName: ''});
-        store.commit('createTag', {name: '购物', type: '-', iconName: ''});
-        store.commit('createTag', {name: '日用', type: '-', iconName: ''});
-        store.commit('createTag', {name: '交通', type: '-', iconName: ''});
+        store.commit('createTag', {name: '餐饮', type: '-', iconName: '餐饮'});
+        store.commit('createTag', {name: '购物', type: '-', iconName: '购物'});
+        store.commit('createTag', {name: '娱乐', type: '-', iconName: '吃豆人'});
+        store.commit('createTag', {name: '交通', type: '-', iconName: '交通'});
+        store.commit('createTag', {name: '零食', type: '-', iconName: '零食'});
+        store.commit('createTag', {name: '水果', type: '-', iconName: '樱桃'});
+        store.commit('createTag', {name: '购物', type: '-', iconName: '购物'});
+        store.commit('createTag', {name: '娱乐', type: '-', iconName: '吃豆人'});
+        store.commit('createTag', {name: '交通', type: '-', iconName: '交通'});
+        store.commit('createTag', {name: '其它', type: '+', iconName: '钱包'});
+        store.commit('createTag', {name: '工资', type: '+', iconName: '工资'});
+        store.commit('createTag', {name: '兼职', type: '+', iconName: '兼职'});
+        store.commit('createTag', {name: '理财', type: '+', iconName: '理财'});
       }
     },
     createTag(state, payload: { name: string, type: string, iconName: string }) {
