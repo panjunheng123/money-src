@@ -14,9 +14,8 @@
       <button @click="inputContent">2</button>
       <button @click="inputContent">3</button>
       <button class="ok" @click="ok">完成</button>
-      <button @click="inputContent">.</button>
       <button @click="inputContent" class="zero">0</button>
-      <button @click="inputContent">x</button>
+      <button @click="inputContent">.</button>
     </div>
   </div>
 </template>
@@ -60,6 +59,10 @@ export default class NumberPad extends Vue {
 
   ok() {
     const number = parseFloat(this.output);
+    if (number === 0) {
+      window.alert('请输入金额！');
+      return;
+    }
     this.$emit('update:value', this.output);
     this.$emit('submit', this.output);
     this.clear();
@@ -99,10 +102,10 @@ export default class NumberPad extends Vue {
         float: right;
       }
 
-      //
-      //&.zero {
-      //  width: 25*2%;
-      //}
+
+      &.zero {
+        width: 25*2%;
+      }
 
       $bg: #f2f2f2;
       //
