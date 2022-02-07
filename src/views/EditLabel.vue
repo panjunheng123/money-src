@@ -61,7 +61,7 @@ export default class EditLabel extends Vue {
   text-align: center;
   font-size: 16px;
   padding: 12px 16px;
-  background: white;
+  background: rgb(236, 236, 236);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,7 +81,7 @@ export default class EditLabel extends Vue {
 }
 
 .form-wrapper {
-  background: white;
+  background: rgb(236, 236, 236);
   margin-top: 8px;
 }
 
