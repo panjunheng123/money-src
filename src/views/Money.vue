@@ -48,10 +48,14 @@ export default class Money extends Vue {
     this.record.amount = parseFloat(value);
   }
 
-  saveRecord() {
+  saveRecord(createdDate: string) {
     if (!this.record.tags || this.record.tags.length === 0) {
       return window.alert('请至少选择一个标签');
     }
+    if (createdDate === '') {
+      return window.alert('请选择日期');
+    }
+    this.record.createdAt = createdDate;
     this.$store.commit('createRecord', this.record);
     if (this.$store.state.createRecordError === null) {
       window.alert('已保存');
@@ -64,6 +68,7 @@ export default class Money extends Vue {
 
 <style lang="scss" scoped>
 @import "./src/assets/style/helper";
+
 ::v-deep .layout-content {
   display: flex;
   flex-direction: column-reverse;

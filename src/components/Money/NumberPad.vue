@@ -1,33 +1,43 @@
 <template>
   <div class="numberPad">
     <div class="output">{{ output }}</div>
-    <div class="buttons">
-      <button @click="inputContent">7</button>
-      <button @click="inputContent">8</button>
-      <button @click="inputContent">9</button>
-      <button @click="remove">删除</button>
-      <button @click="inputContent">4</button>
-      <button @click="inputContent">5</button>
-      <button @click="inputContent">6</button>
-      <button @click="clear">清空</button>
-      <button @click="inputContent">1</button>
-      <button @click="inputContent">2</button>
-      <button @click="inputContent">3</button>
-      <button class="ok" @click="ok">完成</button>
-      <button @click="inputContent" class="zero">0</button>
-      <button @click="inputContent">.</button>
-    </div>
+    <form>
+      <div class="buttons">
+        <button @click="inputContent">7</button>
+        <button @click="inputContent">8</button>
+        <button @click="inputContent">9</button>
+        <input @change="updateDate($event.target.value)" class="datePicker" type="date"/>
+        <button @click="inputContent">4</button>
+        <button @click="inputContent">5</button>
+        <button @click="inputContent">6</button>
+        <button @click="remove">删除</button>
+        <!--      <button @click="clear">清空</button>-->
+        <button @click="inputContent">1</button>
+        <button @click="inputContent">2</button>
+        <button @click="inputContent">3</button>
+        <button class="ok" @click="ok">完成</button>
+        <button @click="inputContent" class="zero">0</button>
+        <button @click="inputContent">.</button>
+      </div>
+    </form>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
+import dayjs from 'dayjs';
 
 @Component
 export default class NumberPad extends Vue {
   @Prop() readonly value!: number;
   output = '0';
+  createdDate = '';
+  defaultDate = dayjs().format('YYYY-MM-DD');
+
+  updateDate(value: string) {
+    this.createdDate = dayjs(value).toISOString();
+  }
 
   inputContent(event: MouseEvent) {
     const button = (event.target as HTMLButtonElement);
@@ -64,7 +74,7 @@ export default class NumberPad extends Vue {
       return;
     }
     this.$emit('update:value', this.output);
-    this.$emit('submit', this.output);
+    this.$emit('submit', this.createdDate);
     this.clear();
   }
 
@@ -85,9 +95,22 @@ export default class NumberPad extends Vue {
     height: 56px;
     line-height: 56px;
   }
+
   .buttons {
     @extend %clearFix;
     background-color: rgb(243, 243, 243);
+
+    > .datePicker {
+      padding-top: 6px;
+      padding-left: 6px;
+      font-size: 14px;
+      width: 25%;
+      height: 64px;
+      background-color: rgb(243, 243, 243);
+      border: 1px solid rgb(201, 201, 201);
+      display: flex;
+      flex-direction: column-reverse;
+    }
 
     > button {
       width: 25%;
@@ -104,7 +127,7 @@ export default class NumberPad extends Vue {
 
 
       &.zero {
-        width: 25*2%;
+        width: 50%;
       }
 
       $bg: #f2f2f2;
