@@ -2,7 +2,7 @@
   <Layout>
     <Tabs :data-source="recordTypeList" :value.sync="type"></Tabs>
     <Tabs class-prefix="date" :data-source="dateTypeList" :value.sync="date"></Tabs>
-<!--    <Echarts :options="x"></Echarts>-->
+    <Chart :options="x"></Chart>
     <ol v-if="groupedDayList.length>0&&date==='day'">
       <li v-for="(group,index) in groupedDayList" :key="index">
         <h3 class="title">{{ dayBeautify(group.title) }} <span>￥{{ group.total }}</span></h3>
@@ -83,32 +83,30 @@ import Tabs from '@/components/Tabs.vue';
 import recordTypeList from '@/constants/recordTypeList';
 import dayjs from 'dayjs';
 import clone from '@/lib/clone';
+import Chart from '@/components/Chart.vue';
 
-// import Echarts from 'vue-echarts'
-// const Echarts: any = require('vue-echarts').default;
-// import 'echarts/lib/chart/bar';
-// console.log(Echarts);
 @Component({
-  components: {Tabs},
+  components: {Tabs, Chart},
 })
 export default class Statistics extends Vue {
-  // get x() {
-  //   return {
-  //     xAxis: {
-  //       type: 'category',
-  //       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  //     },
-  //     yAxis: {
-  //       type: 'value'
-  //     },
-  //     series: [
-  //       {
-  //         data: [150, 230, 224, 218, 135, 147, 260],
-  //         type: 'line'
-  //       }
-  //     ]
-  //   };
-  // }
+  get x() {
+    return {
+      xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          data: [150, 230, 224, 218, 135, 147, 260],
+          type: 'line'
+        }
+      ],
+      tooltip: {show: true}
+    };
+  }
 
   dateTypeList = [
     {text: '按天', value: 'day'},
