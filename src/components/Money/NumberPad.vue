@@ -6,7 +6,8 @@
         <button @click="inputContent">7</button>
         <button @click="inputContent">8</button>
         <button @click="inputContent">9</button>
-        <input @change="updateDate($event.target.value)" class="datePicker" type="date"/>
+        <input v-once id="datePicker" @change="updateDate($event.target.value)" :value="defaultDate" class="datePicker"
+               type="date"/>
         <button @click="inputContent">4</button>
         <button @click="inputContent">5</button>
         <button @click="inputContent">6</button>
@@ -35,6 +36,7 @@ export default class NumberPad extends Vue {
   createdDate = '';
   defaultDate = dayjs().format('YYYY-MM-DD');
 
+
   updateDate(value: string) {
     this.createdDate = dayjs(value).toISOString();
   }
@@ -42,7 +44,7 @@ export default class NumberPad extends Vue {
   inputContent(event: MouseEvent) {
     const button = (event.target as HTMLButtonElement);
     const input = button.textContent!;
-    if (this.output.length === 16) {return;}
+    if (this.output.length === 10) {return;}
     if (this.output === '0') {
       if ('0123456789'.indexOf(input) >= 0) {
         this.output = input;
