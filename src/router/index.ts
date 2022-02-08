@@ -6,6 +6,7 @@ import Statistics from '@/views/Statistics.vue';
 import NotFound from '@/views/NotFound.vue';
 import EditLabel from '@/views/EditLabel.vue';
 import CreateLabel from '@/views/CreateLabel.vue';
+import chartView from '@/views/chartView.vue';
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,10 @@ const routes: Array<RouteConfig> = [
   {
     path: '/labels/create/:type',
     component: CreateLabel
+  },
+  {
+    path: '/chart',
+    component: chartView
   },
   {
     path: '*',
