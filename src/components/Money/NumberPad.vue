@@ -75,6 +75,9 @@ export default class NumberPad extends Vue {
       window.alert('请输入金额！');
       return;
     }
+    if (this.createdDate === '') {
+      this.createdDate = dayjs(this.defaultDate).toISOString();
+    }
     this.$emit('update:value', this.output);
     this.$emit('submit', this.createdDate);
     this.clear();
@@ -104,7 +107,7 @@ export default class NumberPad extends Vue {
 
     > .datePicker {
       padding-top: 6px;
-      padding-left: 6px;
+      padding-left: 10px;
       font-size: 14px;
       width: 25%;
       height: 64px;

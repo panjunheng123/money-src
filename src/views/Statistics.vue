@@ -2,6 +2,7 @@
   <Layout>
     <Tabs :data-source="recordTypeList" :value.sync="type"></Tabs>
     <Tabs class-prefix="date" :data-source="dateTypeList" :value.sync="date"></Tabs>
+<!--    <Echarts :options="x"></Echarts>-->
     <ol v-if="groupedDayList.length>0&&date==='day'">
       <li v-for="(group,index) in groupedDayList" :key="index">
         <h3 class="title">{{ dayBeautify(group.title) }} <span>￥{{ group.total }}</span></h3>
@@ -83,10 +84,32 @@ import recordTypeList from '@/constants/recordTypeList';
 import dayjs from 'dayjs';
 import clone from '@/lib/clone';
 
+// import Echarts from 'vue-echarts'
+// const Echarts: any = require('vue-echarts').default;
+// import 'echarts/lib/chart/bar';
+// console.log(Echarts);
 @Component({
   components: {Tabs},
 })
 export default class Statistics extends Vue {
+  // get x() {
+  //   return {
+  //     xAxis: {
+  //       type: 'category',
+  //       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  //     },
+  //     yAxis: {
+  //       type: 'value'
+  //     },
+  //     series: [
+  //       {
+  //         data: [150, 230, 224, 218, 135, 147, 260],
+  //         type: 'line'
+  //       }
+  //     ]
+  //   };
+  // }
+
   dateTypeList = [
     {text: '按天', value: 'day'},
     {text: '按月', value: 'month'},
@@ -187,6 +210,11 @@ export default class Statistics extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.echarts {
+  max-width: 100%;
+  height: 400px;
+}
+
 ::v-deep .date-tabs-item {
   background-color: transparent;
   height: 40px;
