@@ -28,11 +28,13 @@ export default class FormItem extends Vue {
 
 <style lang="scss" scoped>
 .formItem {
-  font-size: 14px;
+  margin-top: 4px;
+  font-size: 18px;
   //background: #f5f5f5;
   padding-left: 16px;
   display: flex;
   align-items: center;
+
   .name {
     padding-right: 16px;
   }

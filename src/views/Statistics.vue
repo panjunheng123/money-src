@@ -196,6 +196,7 @@ export default class Statistics extends Vue {
   background-color: transparent;
   height: 40px;
   font-size: 20px;
+  padding: 0 !important;
 
   &.selected {
 

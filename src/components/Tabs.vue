@@ -28,11 +28,13 @@ export default class Tabs extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@import "./src/assets/style/helper";
 .tabs {
   //background: #c4c4c4;
   display: flex;
   text-align: center;
-  font-size: 24px;
+  font-size: 26px;
+  font-family: $font-kai;
 
   &-item {
     width: 50%;
@@ -45,12 +47,20 @@ export default class Tabs extends Vue {
     &.selected::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
+      bottom: 10px;
+      //left: 0;
+      width: 25%;
+      height: 2px;
       background: #333;
     }
+  }
+
+  &-item:nth-child(1) {
+    padding-left: 40px;
+  }
+
+  &-item:nth-child(2) {
+    padding-right: 40px;
   }
 }
 </style>
