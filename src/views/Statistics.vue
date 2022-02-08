@@ -1,6 +1,7 @@
 <template>
   <Layout>
-    <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"></Tabs>
+    <Tabs :data-source="recordTypeList" :value.sync="type"></Tabs>
+    <Tabs class-prefix="date" :data-source="dateTypeList" :value.sync="date"></Tabs>
     <ol v-if="groupedList.length>0">
       <li v-for="(group,index) in groupedList" :key="index">
         <h3 class="title">{{ beautify(group.title) }} <span>￥{{ group.total }}</span></h3>
@@ -66,6 +67,12 @@ import clone from '@/lib/clone';
   components: {Tabs},
 })
 export default class Statistics extends Vue {
+  dateTypeList = [
+    {text: '按天', value: 'day'},
+    {text: '按月', value: 'month'},
+  ];
+  date = 'day';
+
   // eslint-disable-next-line no-undef
   tagString(tags: Tag[]) {
     return tags.length === 0 ? '无' : tags.map(t => t.name).join('，');
@@ -121,18 +128,20 @@ export default class Statistics extends Vue {
 </script>
 
 <style lang="scss" scoped>
-//::v-deep .type-tabs-item {
-//  background-color: #c4c4c4;
-//
-//  &.selected {
-//
-//    background-color: rgb(236,236,236);
-//
-//    &::after {
-//      display: none;
-//    }
-//  }
-//}
+::v-deep .date-tabs-item {
+  background-color: transparent;
+  height: 40px;
+  font-size: 20px;
+
+  &.selected {
+
+    background-color: rgb(236, 236, 236);
+
+    &::after {
+      display: none;
+    }
+  }
+}
 
 ::v-deep .interval-tabs-item {
   height: 48px;
